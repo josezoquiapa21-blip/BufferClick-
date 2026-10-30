@@ -1,24 +1,28 @@
 #include <Geode/Geode.hpp>
-#include <Geode/modify/GJBaseGameLayer.hpp>
+#include <Geode/modify/PlayLayer.hpp>
 
 using namespace geode::prelude;
 
-class $modify(BuffedGameLayer, GJBaseGameLayer) {
+class $modify(BuffedPlayLayer, PlayLayer) {
     void postUpdate(float dt) {
-        GJBaseGameLayer::postUpdate(dt);
+        PlayLayer::postUpdate(dt);
 
-        if (PlayLayer::get()) {
-            auto player = PlayLayer::get()->m_player1;
+        auto player = m_player1;
+        if (!player) return;
 
-            if (player) {
-                auto pos = player->getPosition();
+        static float timer = 0.f;
+        timer += dt;
 
-                log::debug(
-                    "Buffed Click - Player X: {}, Y: {}",
-                    pos.x,
-                    pos.y
-                );
-            }
+        if (timer >= 1.f) {
+            timer = 0.f;
+
+            auto pos = player->getPosition();
+
+            log::debug(
+                "Buffed Click - X: {}, Y: {}",
+                pos.x,
+                pos.y
+            );
         }
     }
 };
