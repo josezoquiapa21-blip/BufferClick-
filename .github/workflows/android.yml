@@ -1,4 +1,4 @@
-name: Android Build
+name: Build Buffed Click
 
 on:
   workflow_dispatch:
@@ -7,8 +7,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Show project files
-        run: ls -la
+      - name: Build Android64
+        id: build
+        uses: geode-sdk/build-geode-mod@main
+        with:
+          target: Android64
+
+      - name: Upload mod
+        uses: actions/upload-artifact@v4
+        with:
+          name: BuffedClick-Android64
+          path: ${{ steps.build.outputs.build-output }}/*.geode
