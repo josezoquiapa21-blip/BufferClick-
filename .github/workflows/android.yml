@@ -9,6 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Extract project
+        run: unzip -o BuffedClick.zip -d .
+
       - name: Build Android64
         id: build
         uses: geode-sdk/build-geode-mod@main
