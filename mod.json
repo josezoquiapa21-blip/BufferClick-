@@ -1,0 +1,14 @@
+{
+    "geode": "v5.11.2",
+    "gd": {
+        "android": "2.2081"
+    },
+    "id": "buffedclickdev.buffedclick",
+    "name": "Buffed Click",
+    "version": "v1.0.0",
+    "developer": "BuffedClickDev",
+    "description": "Customizable input buffer for Geometry Dash.",
+    "dependencies": {
+        "geode.node-ids": ">=v1.23.3"
+    }
+}
